@@ -1,0 +1,9 @@
+## This is a basic Docker Compose file
+
+## Version of the Docker Compose file
+version: '3.7'
+
+## Service definitions
+services:
+  hello-world:
+    image: hello-world
