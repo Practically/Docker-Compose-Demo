@@ -1,9 +1,11 @@
 ## This is a basic Docker Compose file
 
-## Version of the Docker Compose file
+## Version of the Compose specification you're using in this file (optional)
 version: '3.7'
 
 ## Service definitions
 services:
+  ## Service name
   hello-world:
+    ## Image to use
     image: hello-world

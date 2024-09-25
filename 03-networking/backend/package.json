@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "name": "example-networking-backend",
+    "scripts": {
+        "start": "node server.js"
+    }
+}

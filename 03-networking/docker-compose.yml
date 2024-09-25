@@ -1,0 +1,43 @@
+## This is a Compose file with multiple services and networking
+
+services:
+  frontend:
+    image: node:20
+    user: node
+    volumes:
+      - ./frontend:/home/node/app
+    working_dir: /home/node/app
+    ports:
+      - 4000:3000
+    command: npm start
+
+    ## Attach the frontend service to our network
+    networks:
+      - my-network
+
+  ## Let's add another service for our backend
+  backend:
+    image: node:20
+    user: node
+    volumes:
+      - ./backend:/home/node/app
+    working_dir: /home/node/app
+    command: npm start
+
+    ## Expose the port to the frontend service
+    ## This is different from `ports`, which publishes ports to the host
+    ## Instead, `expose` makes the port available to other services in the same network - but not to the host
+    expose:
+      - 5000
+
+    ## Attach the backend service to our network
+    networks:
+      - my-network
+
+## Define the networks for our services
+networks:
+  ## Create a network called my-network
+  my-network:
+    ## Use the bridge driver
+    ## This creates a private internal network that only our services can access
+    driver: bridge

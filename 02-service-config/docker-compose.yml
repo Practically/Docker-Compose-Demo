@@ -1,0 +1,28 @@
+## This is a Compose file with a service configuration
+
+services:
+  node:
+    ## Image to use, with a specific tag
+    image: node:20
+
+    ## User to run the container as
+    ## This is a user that exists in the image
+    user: node
+
+    ## Volumes to mount to the container
+    ## The first path is the host path, the second is the container path
+    ## The dot (.) represents the current directory
+    volumes:
+      - .:/home/node/app
+
+    ## Set the working directory inside the container
+    working_dir: /home/node/app
+
+    ## Publish ports from the container to the host
+    ## This lets you access the service from your own machine, e.g. through a browser
+    ## The first port is the host port, the second is the container port
+    ports:
+      - 4000:3000
+
+    ## Command to run when the container starts
+    command: npm start
