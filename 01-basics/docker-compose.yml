@@ -1,9 +1,20 @@
-## This is a basic Docker Compose file
+## This is a basic Docker Compose file with annotations
+
+## How to read these files
+##! This isn't a standard you have to follow, but it's a personal convention of mine.
+##! Comment headings are written with a double hash (##) at the beginning of the line.
+##! This differentiates them from commented-out code, which is prefixed with a single hash (#).
+##! Comment bodies are written with a double hash and exclamation mark (##!) at the beginning of the line.
+##! This simply indents the comment and makes it more readable.
 
 ## Version of the Docker Compose file
+##! This tells Compose what version of the specification you're using.
+##! Compose no longer uses this to detect what version your file is, but some people like to include it for backwards compatibility.
 version: '3.7'
 
 ## Service definitions
+##! This is where you define the services you want to run.
+##! Each service is made up of one or more containers that runs a specific image.
 services:
   hello-world:
     image: hello-world
