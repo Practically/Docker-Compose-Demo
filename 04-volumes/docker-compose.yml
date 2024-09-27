@@ -1,0 +1,45 @@
+## This is a Compose file with a named volume
+
+services:
+  frontend:
+    image: node:20
+    user: node
+    volumes:
+      - ./frontend:/home/node/app
+    working_dir: /home/node/app
+    ports:
+      - 4000:3000
+    command: npm start
+    networks:
+      - my-network
+
+  backend:
+    image: node:20
+    user: node
+    volumes:
+      ## Note that we're mounting the backend folder to /home/node/app/src
+      ## This is so we can separate the source code from the logs
+      - ./backend:/home/node/app/src
+
+      ## Add a named volume for the backend logs
+      ## This will store the logs in a volume that can be shared between containers
+      - backend-logs:/home/node/app/logs
+
+    working_dir: /home/node/app/src
+    command: npm start
+    expose:
+      - 5000
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
+## Define our volumes
+volumes:
+  ## Create a named volume called backend-logs
+  backend-logs:
+    ## Use the local driver
+    ## This stores the volume on the host machine in a folder managed by Docker
+    driver: local

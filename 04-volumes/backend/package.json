@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "name": "example-volumes-backend",
+    "scripts": {
+        "start": "node server.js"
+    }
+}
